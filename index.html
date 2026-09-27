@@ -12,7 +12,7 @@
   <script src="script.js" defer></script>
 </head>
 <body>
-  <!-- Fixed site navigation: the final item is a disabled placeholder for a future section. -->
+  <!-- Fixed site navigation includes a theme control and a Sample Works preview dialog. -->
   <header class="site-header">
     <a class="wordmark" href="#home" aria-label="Joemyl Sanchez, home">
       <span class="wordmark-mark" aria-hidden="true">JS</span>
@@ -21,10 +21,13 @@
     <nav class="site-nav" aria-label="Main navigation">
       <a class="nav-link" href="#home">Home</a>
       <a class="nav-link" href="#about">About</a>
-      <button class="nav-link nav-placeholder" type="button" disabled aria-label="Sample Works, coming later">
+      <button class="nav-link nav-placeholder works-trigger" type="button" aria-haspopup="dialog" aria-controls="works-dialog">
         Sample Works <span class="soon-label">Soon</span>
       </button>
       <a class="nav-link" href="#contact">Contact</a>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch to dark mode" aria-pressed="false">
+        <span class="theme-icon" aria-hidden="true">☾</span>
+      </button>
     </nav>
   </header>
 
@@ -77,7 +80,7 @@
       </div>
     </section>
 
-    <!-- Contact: replace the bracketed labels with your real profiles when ready. -->
+    <!-- Contact links open the visitor's email app, profile, or phone app. -->
     <section class="contact-section page-section" id="contact" aria-labelledby="contact-title">
       <div class="contact-inner">
         <div>
@@ -85,13 +88,23 @@
           <h2 id="contact-title">Have a task in mind?<br><em>Let’s talk.</em></h2>
         </div>
         <div class="contact-links" aria-label="Contact information">
-          <div class="contact-row"><span>Email</span><span class="contact-placeholder">[Add your email]</span></div>
-          <div class="contact-row"><span>LinkedIn</span><span class="contact-placeholder">[Add your LinkedIn]</span></div>
-          <div class="contact-row"><span>GitHub</span><span class="contact-placeholder">[Add your GitHub]</span></div>
+          <div class="contact-row"><span>Email</span><a class="contact-placeholder" href="mailto:joemyl.sanchez.va@gmail.com">joemyl.sanchez.va@gmail.com</a></div>
+          <div class="contact-row"><span>LinkedIn</span><a class="contact-placeholder" href="https://www.linkedin.com/in/joemyl-sanchez" target="_blank" rel="noopener noreferrer">www.linkedin.com/in/joemyl-sanchez</a></div>
+          <div class="contact-row"><span>Phone</span><a class="contact-placeholder" href="tel:+639620516420">+639620516420</a></div>
         </div>
       </div>
     </section>
   </main>
+
+  <!-- Native dialog for the section that will be developed in a later step. -->
+  <dialog class="works-dialog" id="works-dialog" aria-labelledby="works-dialog-title">
+    <div class="dialog-topline">
+      <p class="eyebrow">SAMPLE WORKS</p>
+      <form method="dialog"><button class="dialog-close" type="submit" aria-label="Close dialog">×</button></form>
+    </div>
+    <h2 id="works-dialog-title">Coming in a future step.</h2>
+    <p>This space is being prepared for project samples.</p>
+  </dialog>
 
   <footer class="site-footer">
     <a class="footer-name" href="#home">JOEMYL SANCHEZ</a>

@@ -2,6 +2,7 @@
 :root {
   color-scheme: light;
   --ink: #1f2c27;
+  --copy: #46554e;
   --muted: #66736d;
   --green: #315b4b;
   --green-deep: #234437;
@@ -10,9 +11,37 @@
   --white: #ffffff;
   --line: #dce5df;
   --accent: #c76d4d;
+  --header-bg: rgb(248 250 248 / 94%);
+  --header-border: rgb(220 229 223 / 82%);
+  --section-border: #cbd9d0;
+  --hero-tint: rgb(232 240 235 / 72%);
+  --footer-bg: #234437;
+  --footer-text: #e7eee9;
+  --footer-copy: #c5d4cb;
   --sans: "DM Sans", "Segoe UI", sans-serif;
   --serif: "Newsreader", Georgia, serif;
   --header-height: 76px;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --ink: #e7eee9;
+  --copy: #c2cec7;
+  --muted: #a7b5ad;
+  --green: #a4c8b2;
+  --green-deep: #d7e8dd;
+  --mint: #263a30;
+  --paper: #18221e;
+  --white: #202c26;
+  --line: #394940;
+  --accent: #e09170;
+  --header-bg: rgb(24 34 30 / 94%);
+  --header-border: rgb(57 73 64 / 82%);
+  --section-border: #394940;
+  --hero-tint: rgb(41 61 51 / 72%);
+  --footer-bg: #111a16;
+  --footer-text: #e7eee9;
+  --footer-copy: #b7c5bc;
 }
 
 * {
@@ -34,6 +63,16 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+body,
+.site-header,
+.hero,
+.about-section,
+.contact-section,
+.focus-note,
+.works-dialog {
+  transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease;
+}
+
 button,
 a {
   font: inherit;
@@ -52,8 +91,8 @@ a {
   justify-content: space-between;
   min-height: var(--header-height);
   padding: 0 clamp(22px, 7vw, 104px);
-  border-bottom: 1px solid rgb(220 229 223 / 82%);
-  background: rgb(248 250 248 / 94%);
+  border-bottom: 1px solid var(--header-border);
+  background: var(--header-bg);
   backdrop-filter: blur(12px);
 }
 
@@ -125,13 +164,43 @@ a {
   transform: scaleX(1);
 }
 
-.nav-placeholder:disabled {
-  cursor: not-allowed;
-  opacity: 0.58;
+.theme-toggle::after {
+  display: none;
 }
 
-.nav-placeholder:disabled::after {
-  display: none;
+.theme-toggle {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+  place-items: center;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--green-deep);
+  cursor: pointer;
+  transition: background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus-visible {
+  border-color: var(--green);
+  background: var(--mint);
+}
+
+.theme-toggle:active {
+  transform: scale(0.94);
+}
+
+.theme-icon {
+  font-size: 19px;
+  line-height: 1;
+  transition: transform 180ms ease;
+}
+
+.theme-toggle:hover .theme-icon {
+  transform: rotate(-15deg);
 }
 
 .soon-label {
@@ -162,7 +231,7 @@ a {
   right: 0;
   width: 47%;
   height: 100%;
-  background: linear-gradient(135deg, transparent 14%, rgb(232 240 235 / 72%) 14%, rgb(232 240 235 / 72%) 100%);
+  background: linear-gradient(135deg, transparent 14%, var(--hero-tint) 14%, var(--hero-tint) 100%);
   content: "";
   pointer-events: none;
 }
@@ -271,7 +340,7 @@ h2 em {
   min-height: 365px;
   justify-self: center;
   padding: 30px;
-  border: 1px solid #d5e0d8;
+  border: 1px solid var(--line);
   background: var(--white);
   box-shadow: 14px 16px 0 rgb(49 91 75 / 9%);
   animation: rise-in 700ms 120ms both;
@@ -397,7 +466,7 @@ h2 {
 .intro-copy {
   max-width: 610px;
   margin-bottom: 41px;
-  color: #46554e;
+  color: var(--copy);
   font-size: 16px;
   line-height: 1.85;
 }
@@ -446,7 +515,7 @@ h2 {
 }
 
 .contact-links {
-  border-top: 1px solid #cbd9d0;
+  border-top: 1px solid var(--section-border);
 }
 
 .contact-row {
@@ -454,7 +523,7 @@ h2 {
   justify-content: space-between;
   gap: 16px;
   padding: 17px 0;
-  border-bottom: 1px solid #cbd9d0;
+  border-bottom: 1px solid var(--section-border);
   font-size: 13px;
 }
 
@@ -465,7 +534,12 @@ h2 {
 
 .contact-placeholder {
   color: var(--muted);
+  overflow-wrap: anywhere;
   text-align: right;
+}
+
+.contact-placeholder:hover {
+  color: var(--green-deep);
 }
 
 .site-footer {
@@ -475,8 +549,8 @@ h2 {
   justify-content: space-between;
   gap: 20px;
   padding: 16px clamp(24px, 7vw, 104px);
-  background: var(--green-deep);
-  color: #e7eee9;
+  background: var(--footer-bg);
+  color: var(--footer-text);
 }
 
 .footer-name {
@@ -488,8 +562,73 @@ h2 {
 
 .site-footer p {
   margin: 0;
-  color: #c5d4cb;
+  color: var(--footer-copy);
   font-size: 11px;
+}
+
+/* Future project cards reveal when the script adds .is-visible on scroll. */
+.project-card {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 500ms ease, transform 500ms ease;
+}
+
+.project-card.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.works-dialog {
+  width: min(440px, calc(100% - 36px));
+  padding: 28px;
+  border: 1px solid var(--line);
+  background: var(--white);
+  color: var(--ink);
+  box-shadow: 0 24px 80px rgb(0 0 0 / 22%);
+}
+
+.works-dialog[open] {
+  animation: rise-in 220ms both;
+}
+
+.works-dialog::backdrop {
+  background: rgb(14 23 18 / 58%);
+  backdrop-filter: blur(3px);
+}
+
+.dialog-topline {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.dialog-topline .eyebrow {
+  margin-bottom: 22px;
+}
+
+.dialog-close {
+  display: grid;
+  width: 34px;
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  font-size: 21px;
+  line-height: 1;
+}
+
+.works-dialog h2 {
+  margin-bottom: 12px;
+  font-size: clamp(32px, 7vw, 42px);
+}
+
+.works-dialog > p:last-child {
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 14px;
 }
 
 :focus-visible {
@@ -545,6 +684,12 @@ h2 {
     white-space: nowrap;
   }
 
+  .theme-toggle {
+    width: 32px;
+    height: 32px;
+    flex-basis: 32px;
+  }
+
   .soon-label {
     font-size: 8px;
   }
@@ -560,7 +705,7 @@ h2 {
     top: 45%;
     width: 100%;
     height: 55%;
-    background: linear-gradient(135deg, transparent, rgb(232 240 235 / 72%));
+    background: linear-gradient(135deg, transparent, var(--hero-tint));
   }
 
   .hero h1 {
@@ -614,6 +759,12 @@ h2 {
     font-size: 10px;
   }
 
+  .theme-toggle {
+    width: 30px;
+    height: 30px;
+    flex-basis: 30px;
+  }
+
   .soon-label {
     margin-left: 1px;
     font-size: 7px;
@@ -641,5 +792,10 @@ h2 {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .project-card {
+    opacity: 1;
+    transform: none;
   }
 }
