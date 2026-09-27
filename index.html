@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Joemyl Sanchez is an aspiring Virtual Assistant with a background in Computer Engineering and IT support.">
+  <title>Joemyl Sanchez | Aspiring Virtual Assistant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <!-- Fixed site navigation: the final item is a disabled placeholder for a future section. -->
+  <header class="site-header">
+    <a class="wordmark" href="#home" aria-label="Joemyl Sanchez, home">
+      <span class="wordmark-mark" aria-hidden="true">JS</span>
+      <span>JOEMYL SANCHEZ</span>
+    </a>
+    <nav class="site-nav" aria-label="Main navigation">
+      <a class="nav-link" href="#home">Home</a>
+      <a class="nav-link" href="#about">About</a>
+      <button class="nav-link nav-placeholder" type="button" disabled aria-label="Sample Works, coming later">
+        Sample Works <span class="soon-label">Soon</span>
+      </button>
+      <a class="nav-link" href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Home: introduction and the primary link into the page. -->
+    <section class="hero page-section" id="home" aria-labelledby="hero-title">
+      <div class="hero-content">
+        <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> Aspiring Virtual Assistant</p>
+        <h1 id="hero-title">JOEMYL<br><span>SANCHEZ</span></h1>
+        <p class="hero-quote">“Turning tasks into <em>organized solutions.</em>”</p>
+        <a class="primary-button" href="#about">Explore My Work <span aria-hidden="true">↓</span></a>
+      </div>
+
+      <!-- A simple visual motif, not a claim of past client work. -->
+      <aside class="focus-note" aria-label="A thoughtful approach to support work">
+        <div class="note-topline"><span>MY APPROACH</span><span class="note-index">01 / 03</span></div>
+        <div class="note-rule"></div>
+        <p class="note-heading">Make room<br>for what matters.</p>
+        <ul class="note-list">
+          <li><span class="check-mark" aria-hidden="true">✓</span> Clear priorities</li>
+          <li><span class="check-mark" aria-hidden="true">✓</span> Careful details</li>
+          <li><span class="check-mark" aria-hidden="true">✓</span> Steady follow-through</li>
+        </ul>
+        <span class="note-stamp" aria-hidden="true">JS</span>
+      </aside>
+      <a class="scroll-cue" href="#about"><span aria-hidden="true">↓</span> SCROLL TO DISCOVER</a>
+    </section>
+
+    <!-- About: a candid introduction and current learning areas. -->
+    <section class="about-section page-section" id="about" aria-labelledby="about-title">
+      <div class="section-inner">
+        <div class="section-heading">
+          <p class="eyebrow">A LITTLE ABOUT ME</p>
+          <h2 id="about-title">Curious, capable,<br><em>and growing.</em></h2>
+        </div>
+        <div class="about-copy">
+          <p class="intro-copy">I’m Joemyl Sanchez, an aspiring Virtual Assistant with a background in Computer Engineering and IT support. I’m interested in helping businesses stay organized, manage information, support daily operations, and learn the tools needed to work efficiently.</p>
+          <div class="developing-block">
+            <h3>AREAS I’M DEVELOPING</h3>
+            <ul class="skills-list">
+              <li>Administrative Support</li>
+              <li>Data Entry</li>
+              <li>Web Research</li>
+              <li>Customer Support</li>
+              <li>IT Support</li>
+              <li>Productivity Tools</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact: replace the bracketed labels with your real profiles when ready. -->
+    <section class="contact-section page-section" id="contact" aria-labelledby="contact-title">
+      <div class="contact-inner">
+        <div>
+          <p class="eyebrow">LET’S CONNECT</p>
+          <h2 id="contact-title">Have a task in mind?<br><em>Let’s talk.</em></h2>
+        </div>
+        <div class="contact-links" aria-label="Contact information">
+          <div class="contact-row"><span>Email</span><span class="contact-placeholder">[Add your email]</span></div>
+          <div class="contact-row"><span>LinkedIn</span><span class="contact-placeholder">[Add your LinkedIn]</span></div>
+          <div class="contact-row"><span>GitHub</span><span class="contact-placeholder">[Add your GitHub]</span></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="footer-name" href="#home">JOEMYL SANCHEZ</a>
+    <p>© <span id="current-year"></span> · Aspiring Virtual Assistant</p>
+  </footer>
+</body>
+</html>
