@@ -26,19 +26,44 @@ if (themeToggle) {
   });
 }
 
-// Open and close the native dialog without adding the future works section yet.
-const worksTrigger = document.querySelector(".works-trigger");
-const worksDialog = document.querySelector("#works-dialog");
-const dialogCloseButton = document.querySelector(".dialog-close");
+// Canva design links are kept here so each portfolio action has one clear destination.
+const canvaDesignUrls = [
+  "https://canva.link/7e6p308ebsj3wic",
+  "https://canva.link/y6g6yz8tglq14st"
+];
 
-if (worksTrigger && worksDialog && typeof worksDialog.showModal === "function") {
-  worksTrigger.addEventListener("click", () => worksDialog.showModal());
-  dialogCloseButton.addEventListener("click", () => worksDialog.close());
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && worksDialog.open) {
-      worksDialog.close();
-    }
+const worksDialog = document.querySelector("#works-dialog");
+const workDialogGallery = document.querySelector("#work-dialog-gallery");
+const designLinks = document.querySelector("#design-links");
+
+if (worksDialog && typeof worksDialog.showModal === "function") {
+  document.querySelectorAll("[data-open-work]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const card = button.closest(".project-card");
+      const tool = card.dataset.workTool;
+      const images = card.querySelectorAll(".project-preview img");
+
+      document.querySelector("#works-dialog-title").textContent = card.dataset.workTitle;
+      document.querySelector("#works-dialog-description").textContent = card.dataset.workDescription;
+      document.querySelector("#works-dialog-tool").textContent = tool;
+      workDialogGallery.replaceChildren(...Array.from(images, (image) => {
+        const preview = image.cloneNode();
+        preview.loading = "eager";
+        return preview;
+      }));
+      designLinks.hidden = tool !== "Canva";
+      worksDialog.showModal();
+    });
   });
+
+  document.querySelectorAll("[data-design-index]").forEach((button) => {
+    const url = canvaDesignUrls[Number(button.dataset.designIndex)];
+    button.disabled = !url;
+    button.addEventListener("click", () => {
+      if (url) window.open(url, "_blank", "noopener,noreferrer");
+    });
+  });
+
   worksDialog.addEventListener("click", (event) => {
     if (event.target === worksDialog) worksDialog.close();
   });
