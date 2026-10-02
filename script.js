@@ -5,6 +5,25 @@ if (yearElement) {
   yearElement.textContent = new Date().getFullYear();
 }
 
+const visitCountElement = document.querySelector("#visit-count");
+
+if (visitCountElement && (window.location.protocol === "http:" || window.location.protocol === "https:")) {
+  fetch("/api/visits", {
+    headers: { Accept: "application/json" },
+    cache: "no-store"
+  })
+    .then((response) => {
+      if (!response.ok) throw new Error("Visit counter unavailable");
+      return response.json();
+    })
+    .then(({ visits }) => {
+      if (Number.isSafeInteger(visits) && visits > 0) {
+        visitCountElement.textContent = visits.toLocaleString();
+      }
+    })
+    .catch(() => {});
+}
+
 // Switch the page color palette and keep the button label action-oriented.
 const themeToggle = document.querySelector("#theme-toggle");
 

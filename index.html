@@ -14,9 +14,12 @@
 <body>
   <!-- Fixed site navigation includes a theme control. -->
   <header class="site-header">
-    <a class="wordmark" href="#home" aria-label="VA Joms, home">
-      <span>VA Joms</span>
-    </a>
+    <div class="brand-cluster">
+      <a class="wordmark" href="#home" aria-label="VA Joms, home">
+        <span>VA Joms</span>
+      </a>
+      <span class="visit-counter">VISITS · <span id="visit-count" aria-live="polite">—</span></span>
+    </div>
     <nav class="site-nav" aria-label="Main navigation">
       <a class="nav-link" href="#home">Home</a>
       <a class="nav-link" href="#about">About</a>
@@ -40,7 +43,7 @@
         <div class="hero-intro">
           <div class="hero-intro-copy">
             <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> Virtual Assistant (aspiring)</p>
-            <h1 id="hero-title">VA<br><span>Joms</span></h1>
+            <h1 id="hero-title">VA <span>Joms</span></h1>
           </div>
         </div>
         <p class="hero-quote">“Turning tasks into <em>organized solutions.</em>”</p>
@@ -50,8 +53,8 @@
       <!-- A simple visual motif, not a claim of past client work. -->
       <aside class="focus-note" aria-label="A thoughtful approach to support work">
         <div class="note-topline"><span>MY APPROACH</span><span class="note-index">01 / 03</span></div>
-        <div class="note-rule"></div>
         <p class="note-heading">Make room<br>for what matters.</p>
+        <div class="note-rule"></div>
         <ul class="note-list">
           <li><span class="check-mark" aria-hidden="true">✓</span> Clear priorities</li>
           <li><span class="check-mark" aria-hidden="true">✓</span> Careful details</li>
