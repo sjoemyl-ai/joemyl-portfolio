@@ -498,6 +498,59 @@ h2 {
   font-size: 13px;
 }
 
+.about-extras {
+  display: grid;
+  max-width: 1120px;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: clamp(48px, 10vw, 140px);
+  margin: 76px auto 0;
+}
+
+.resume-panel,
+.setup-panel {
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+
+.about-extras .eyebrow {
+  margin-bottom: 17px;
+}
+
+.setup-list {
+  margin: 0;
+  border-top: 1px solid var(--line);
+}
+
+.setup-list > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 13px;
+}
+
+.setup-list dt {
+  color: var(--green-deep);
+  font-weight: 700;
+}
+
+.setup-list dd {
+  margin: 0;
+  color: var(--muted);
+  text-align: right;
+}
+
+.setup-list a {
+  color: inherit;
+  text-decoration-color: var(--green);
+  text-underline-offset: 3px;
+}
+
+.setup-list a:hover {
+  color: var(--green-deep);
+}
+
 .works-section {
   padding: 104px clamp(24px, 11vw, 164px) 112px;
   background: var(--paper);
@@ -575,6 +628,39 @@ h2 {
   background: var(--white);
 }
 
+.project-preview-canva a {
+  display: grid;
+  min-width: 0;
+  overflow: hidden;
+  place-items: center;
+  background: var(--white);
+}
+
+.project-preview-canva a img {
+  transition: transform 180ms ease, filter 180ms ease;
+}
+
+.project-preview-canva a:hover img,
+.project-preview-canva a:focus-visible img {
+  filter: brightness(0.94);
+  transform: scale(1.025);
+}
+
+.project-preview-excel {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  padding: 12px;
+}
+
+.project-preview-excel img {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  object-fit: contain;
+  background: var(--white);
+}
+
 .project-card-copy {
   padding: 23px 24px 25px;
 }
@@ -584,6 +670,14 @@ h2 {
   align-items: flex-start;
   justify-content: space-between;
   gap: 12px;
+}
+
+.project-tags {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px;
 }
 
 .project-card h3 {
@@ -605,6 +699,23 @@ h2 {
   font-size: 10px;
   font-weight: 700;
   line-height: 1.4;
+}
+
+.type-label {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  padding: 4px 9px;
+  border: 1px solid var(--section-border);
+  background: var(--mint);
+  color: var(--copy);
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.type-label[hidden] {
+  display: none;
 }
 
 .project-card-copy > p {
@@ -740,6 +851,10 @@ h2 {
   box-shadow: 0 24px 80px rgb(0 0 0 / 22%);
 }
 
+.works-dialog.works-dialog-single {
+  width: min(700px, calc(100% - 36px));
+}
+
 .works-dialog[open] {
   animation: rise-in 220ms both;
 }
@@ -776,8 +891,13 @@ h2 {
 .work-dialog-gallery {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
   gap: 14px;
   margin-bottom: 24px;
+}
+
+.work-dialog-gallery[data-count="1"] {
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .work-dialog-gallery:empty {
@@ -788,13 +908,30 @@ h2 {
   display: block;
   width: 100%;
   max-height: 54svh;
-  aspect-ratio: 4 / 3;
+  height: auto;
+  align-self: start;
   object-fit: contain;
   background: var(--mint);
 }
 
+.work-dialog-gallery[data-count="1"] img {
+  width: auto;
+  max-width: 100%;
+  max-height: 64svh;
+  justify-self: center;
+}
+
+.work-dialog-gallery a {
+  display: block;
+  min-width: 0;
+}
+
 .work-dialog-copy .tool-label {
   margin-bottom: 13px;
+}
+
+.work-dialog-copy .type-label {
+  margin: 0 0 13px 8px;
 }
 
 .works-dialog h2 {
@@ -818,6 +955,20 @@ h2 {
 
 .design-links[hidden] {
   display: none;
+}
+
+.excel-links {
+  margin-top: 22px;
+}
+
+.excel-links[hidden] {
+  display: none;
+}
+
+.sample-note {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 12px;
 }
 
 :focus-visible {
@@ -920,6 +1071,7 @@ h2 {
   }
 
   .section-inner,
+  .about-extras,
   .contact-inner {
     grid-template-columns: 1fr;
     gap: 26px;
@@ -927,6 +1079,11 @@ h2 {
 
   .about-copy {
     padding-top: 0;
+  }
+
+  .about-extras {
+    gap: 34px;
+    margin-top: 48px;
   }
 
   .intro-copy {
@@ -991,6 +1148,19 @@ h2 {
 
   .work-dialog-gallery img {
     max-height: 48svh;
+  }
+
+  .work-dialog-gallery[data-count="1"] img {
+    max-height: 58svh;
+  }
+
+  .works-dialog.works-dialog-single {
+    width: min(560px, calc(100% - 28px));
+  }
+
+  .setup-list > div {
+    gap: 10px;
+    font-size: 12px;
   }
 }
 

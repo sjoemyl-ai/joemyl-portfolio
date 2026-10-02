@@ -76,6 +76,22 @@
           </div>
         </div>
       </div>
+      <div class="about-extras">
+        <div class="resume-panel">
+          <p class="eyebrow">RESUME / CV</p>
+          <a class="primary-button" href="https://drive.google.com/file/d/1CGpUSxIitow4PVXkFJRL87BXC_ZpAb75/view?usp=drive_link" target="_blank" rel="noopener noreferrer">View Resume <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="setup-panel">
+          <p class="eyebrow">WORK SETUP</p>
+          <dl class="setup-list">
+            <div><dt>Processor</dt><dd><a href="https://www.intel.com/content/www/us/en/products/sku/134586/intel-core-i512400-processor-18m-cache-up-to-40-ghz/specifications.html" target="_blank" rel="noopener noreferrer">Intel Core i5-12400</a></dd></div>
+            <div><dt>RAM</dt><dd>16GB</dd></div>
+            <div><dt>Internet</dt><dd>Globe At Home 400Mbps+</dd></div>
+            <div><dt>Headset</dt><dd>Noise-Cancelling Headset</dd></div>
+            <div><dt>Backup Power</dt><dd>Not currently available</dd></div>
+          </dl>
+        </div>
+      </div>
     </section>
 
     <section class="works-section page-section" id="works" aria-labelledby="works-title">
@@ -88,6 +104,23 @@
           <p>Selected examples of organization and visual content design.</p>
         </div>
         <div class="works-grid">
+          <article class="project-card" data-work-title="Excel Administrative &amp; Data Entry" data-work-tool="Microsoft Excel" data-work-type="Simulated Workflow" data-work-description="A simulated Excel workflow demonstrating data organization, data entry, web research, task tracking, and basic reporting.">
+            <div class="project-preview project-preview-excel">
+              <img src="images/excel_1.png" alt="Excel workflow screenshot 1: administrative data organization" loading="lazy">
+              <img src="images/excel_2.png" alt="Excel workflow screenshot 2: data entry and web research" loading="lazy">
+              <img src="images/excel_3.png" alt="Excel workflow screenshot 3: task tracking" loading="lazy">
+              <img src="images/excel_4.png" alt="Excel workflow screenshot 4: basic reporting" loading="lazy">
+            </div>
+            <div class="project-card-copy">
+              <div class="project-card-heading">
+                <h3>Excel Administrative &amp; Data Entry</h3>
+                <div class="project-tags"><span class="tool-label">Microsoft Excel</span><span class="type-label">Simulated Workflow</span></div>
+              </div>
+              <p>A simulated Excel workflow demonstrating data organization, data entry, web research, task tracking, and basic reporting.</p>
+              <button class="work-button" type="button" data-open-work>View Work <span aria-hidden="true">↗</span></button>
+            </div>
+          </article>
+
           <article class="project-card" data-work-title="Google Drive File Organization" data-work-tool="Google Drive" data-work-description="A sample file organization setup demonstrating folder structure and document organization.">
             <div class="project-preview project-preview-drive">
               <img src="images/google_drive_screenshot.png" alt="Preview of the Google Drive folder organization setup" loading="lazy">
@@ -144,11 +177,16 @@
     <div class="work-dialog-gallery" id="work-dialog-gallery"></div>
     <div class="work-dialog-copy">
       <span class="tool-label" id="works-dialog-tool"></span>
+      <span class="type-label" id="works-dialog-type" hidden></span>
       <h2 id="works-dialog-title"></h2>
       <p id="works-dialog-description"></p>
       <div class="design-links" id="design-links" hidden>
         <button class="design-link" type="button" data-design-index="0" disabled>Open Design 1 <span aria-hidden="true">↗</span></button>
         <button class="design-link" type="button" data-design-index="1" disabled>Open Design 2 <span aria-hidden="true">↗</span></button>
+      </div>
+      <div class="excel-links" id="excel-links" hidden>
+        <a class="design-link" href="https://docs.google.com/spreadsheets/d/1aemaAkbRhfUJC0Rcq6QMck-hYy5P6Y9i/edit?usp=drive_link&amp;ouid=112078230828665082879&amp;rtpof=true&amp;sd=true" target="_blank" rel="noopener noreferrer">View Full Excel File <span aria-hidden="true">↗</span></a>
+        <p class="sample-note">This workbook is a simulated portfolio sample.</p>
       </div>
     </div>
   </dialog>

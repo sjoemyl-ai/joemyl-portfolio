@@ -32,9 +32,24 @@ const canvaDesignUrls = [
   "https://canva.link/y6g6yz8tglq14st"
 ];
 
+document.querySelectorAll(".project-preview-canva img").forEach((image, index) => {
+  const url = canvaDesignUrls[index];
+  if (!url) return;
+
+  const link = document.createElement("a");
+  link.href = url;
+  link.target = "_blank";
+  link.rel = "noopener noreferrer";
+  link.setAttribute("aria-label", `Open Canva Design ${index + 1} in a new tab`);
+  image.replaceWith(link);
+  link.append(image);
+});
+
 const worksDialog = document.querySelector("#works-dialog");
 const workDialogGallery = document.querySelector("#work-dialog-gallery");
 const designLinks = document.querySelector("#design-links");
+const excelLinks = document.querySelector("#excel-links");
+const workDialogType = document.querySelector("#works-dialog-type");
 
 if (worksDialog && typeof worksDialog.showModal === "function") {
   document.querySelectorAll("[data-open-work]").forEach((button) => {
@@ -42,16 +57,30 @@ if (worksDialog && typeof worksDialog.showModal === "function") {
       const card = button.closest(".project-card");
       const tool = card.dataset.workTool;
       const images = card.querySelectorAll(".project-preview img");
+      const workType = card.dataset.workType || "";
 
       document.querySelector("#works-dialog-title").textContent = card.dataset.workTitle;
       document.querySelector("#works-dialog-description").textContent = card.dataset.workDescription;
       document.querySelector("#works-dialog-tool").textContent = tool;
-      workDialogGallery.replaceChildren(...Array.from(images, (image) => {
+      workDialogType.textContent = workType;
+      workDialogType.hidden = !workType;
+      workDialogGallery.dataset.count = String(images.length);
+      worksDialog.classList.toggle("works-dialog-single", images.length === 1);
+      workDialogGallery.replaceChildren(...Array.from(images, (image, index) => {
         const preview = image.cloneNode();
         preview.loading = "eager";
-        return preview;
+        if (tool !== "Canva" || !canvaDesignUrls[index]) return preview;
+
+        const link = document.createElement("a");
+        link.href = canvaDesignUrls[index];
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.setAttribute("aria-label", `Open Canva Design ${index + 1} in a new tab`);
+        link.append(preview);
+        return link;
       }));
       designLinks.hidden = tool !== "Canva";
+      excelLinks.hidden = tool !== "Microsoft Excel";
       worksDialog.showModal();
     });
   });
