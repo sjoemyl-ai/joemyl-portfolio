@@ -98,6 +98,39 @@ if (worksDialog && typeof worksDialog.showModal === "function") {
   });
 }
 
+const heroSection = document.querySelector("#home");
+const heroReduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+if (heroSection && !heroReduceMotion.matches) {
+  let heroAnimationFrame = 0;
+
+  const updateHeroScroll = () => {
+    const heroHeight = Math.max(heroSection.offsetHeight, window.innerHeight);
+    const progress = Math.min(1, Math.max(0, window.scrollY / (heroHeight * 0.82)));
+    const rootStyle = document.documentElement.style;
+
+    rootStyle.setProperty("--hero-content-shift", `${-24 * progress}px`);
+    rootStyle.setProperty("--hero-content-opacity", String(1 - progress * 0.78));
+    rootStyle.setProperty("--hero-photo-shift", `${-42 * progress}px`);
+    rootStyle.setProperty("--hero-panel-shift", `${-14 * progress}px`);
+    rootStyle.setProperty("--hero-panel-opacity", String(1 - progress * 0.82));
+    rootStyle.setProperty("--hero-background-shift", `${-30 * progress}px`);
+  };
+
+  const requestHeroUpdate = () => {
+    if (heroAnimationFrame) return;
+
+    heroAnimationFrame = window.requestAnimationFrame(() => {
+      heroAnimationFrame = 0;
+      updateHeroScroll();
+    });
+  };
+
+  window.addEventListener("scroll", requestHeroUpdate, { passive: true });
+  window.addEventListener("resize", requestHeroUpdate);
+  updateHeroScroll();
+}
+
 // Highlight the navigation link for the section closest to the top of the page.
 const pageSections = document.querySelectorAll("main .page-section");
 const navigationLinks = document.querySelectorAll('.site-nav a[href^="#"]');
