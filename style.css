@@ -1379,9 +1379,9 @@ h2 {
   }
 }
 
-@media (max-width: 600px) {
-  .works-dialog {
-    padding: 20px;
+@media (max-width: 360px) {
+  .hero-portrait {
+    grid-row: 2;
     width: min(88.8vw, 288px);
     max-width: calc(100vw - 60px);
   }
@@ -1390,6 +1390,13 @@ h2 {
     grid-row: 3;
     margin-top: -20px;
     width: min(82%, 220px);
+  }
+}
+
+@media (max-width: 600px) {
+  .works-dialog {
+    padding: 20px;
+  }
 
   .work-dialog-gallery {
     grid-template-columns: 1fr;
