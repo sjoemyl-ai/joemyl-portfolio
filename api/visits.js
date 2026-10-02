@@ -1,3 +1,5 @@
+const { Redis } = require("@upstash/redis");
+
 module.exports = async function visitsHandler(request, response) {
   response.setHeader("Cache-Control", "no-store, max-age=0");
 
@@ -19,23 +21,23 @@ module.exports = async function visitsHandler(request, response) {
       return response.status(503).json({ error: "Visit counter is not configured" });
     }
 
-    const key = encodeURIComponent("va-joms:page-visits");
-    const upstream = await fetch(`${databaseUrl.origin}/incr/${key}`, {
-      headers: {
-        Accept: "application/json",
-        Authorization: `Bearer ${redisToken}`
-      },
-      signal: AbortSignal.timeout(5000)
+    const redis = new Redis({
+      url: databaseUrl.origin,
+      token: redisToken
     });
-    const payload = await upstream.json();
-    const visits = Number(payload.result);
+    const visits = await redis.incr("va-joms:page-visits");
 
-    if (!upstream.ok || payload.error || !Number.isSafeInteger(visits) || visits < 1) {
+    if (!Number.isSafeInteger(visits) || visits < 1) {
+      console.error("[visits] Upstash returned an invalid counter value");
       return response.status(502).json({ error: "Visit counter is unavailable" });
     }
 
     return response.status(200).json({ visits });
-  } catch {
+  } catch (error) {
+    console.error("[visits] Upstash INCR failed", {
+      name: error instanceof Error ? error.name : "UnknownError",
+      message: error instanceof Error ? error.message.slice(0, 160) : "Unknown error"
+    });
     return response.status(502).json({ error: "Visit counter is unavailable" });
   }
 };
